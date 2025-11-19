@@ -1,4 +1,4 @@
-export interface ICreateUserUseCase {
+export interface ICreateUser {
   execute(input: CreateUserInput): Promise<CreateUserOutput>
 }
 

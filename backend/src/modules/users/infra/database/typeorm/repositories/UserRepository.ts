@@ -1,4 +1,4 @@
-import { ICreateUserRepository } from "@/modules/users/application/protocols/ICreateUserRepository"
+import { ICreateUserRepository } from "@/modules/users/application/repositories/ICreateUserRepository"
 import { Repository } from "typeorm"
 import { UserModel } from "../models/UserModel"
 import { TypeOrmConnection } from "@/main/database/TypeOrmConnection"

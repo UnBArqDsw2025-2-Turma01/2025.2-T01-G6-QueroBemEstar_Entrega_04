@@ -2,11 +2,11 @@ import { User } from "../../domain/entities/User"
 import {
   CreateUserOutput,
   CreateUserInput,
-  ICreateUserUseCase,
-} from "../../domain/usecases/ICreateUserUseCase"
-import { ICreateUserRepository } from "../protocols/ICreateUserRepository"
+  ICreateUser,
+} from "../../application/ports/ICreateUser"
+import { ICreateUserRepository } from "../repositories/ICreateUserRepository"
 
-export class CreateUserUseCase implements ICreateUserUseCase {
+export class CreateUser implements ICreateUser {
   constructor(private readonly userRepository: ICreateUserRepository) {}
 
   async execute(input: CreateUserInput): Promise<CreateUserOutput> {
