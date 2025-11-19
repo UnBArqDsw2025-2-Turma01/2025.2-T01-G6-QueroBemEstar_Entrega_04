@@ -1,7 +1,5 @@
+import { User } from "../../domain/entities/User"
+
 export interface ICreateUserRepository {
-  create(userData: {
-    name: string
-    email: string
-    password: string
-  }): Promise<boolean>
+  create(user: User): Promise<boolean>
 }

@@ -2,7 +2,7 @@ import { Column, PrimaryGeneratedColumn } from "typeorm"
 
 export class UserModel {
   @PrimaryGeneratedColumn()
-  id: string
+  id: number
 
   @Column()
   name: string

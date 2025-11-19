@@ -1,5 +1,5 @@
 export class User {
-  public readonly id: string | null
+  public readonly id?: number
   public name: string
   public password: string
 
@@ -7,7 +7,7 @@ export class User {
   public updatedAt: Date
 
   private constructor(props: {
-    id: string | null
+    id?: number
     name: string
     password: string
     createdAt: Date
@@ -21,14 +21,12 @@ export class User {
   }
 
   public static create(props: {
-    id?: string
     name: string
     password: string
   }): User {
     //TODO: Adicionar validações e regras de negócio aqui
 
     const user = new User({
-      id: props.id ?? null,
       name: props.name,
       password: props.password,
       createdAt: new Date(),

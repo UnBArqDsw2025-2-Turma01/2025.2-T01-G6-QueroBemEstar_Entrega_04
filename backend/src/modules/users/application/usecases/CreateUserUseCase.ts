@@ -4,8 +4,11 @@ import {
   CreateUserInput,
   ICreateUserUseCase,
 } from "../../domain/usecases/ICreateUserUseCase"
+import { ICreateUserRepository } from "../protocols/ICreateUserRepository"
 
 export class CreateUserUseCase implements ICreateUserUseCase {
+  constructor(private readonly userRepository: ICreateUserRepository) {}
+
   async execute(input: CreateUserInput): Promise<CreateUserOutput> {
     const user = User.create({
       name: input.name,
@@ -14,8 +17,8 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
     console.log("User created:", user)
 
-    //TODO: Implementar lógica para persistir o usuário no banco de dados
+    const result = await this.userRepository.create(user)
 
-    return true
+    return result
   }
 }

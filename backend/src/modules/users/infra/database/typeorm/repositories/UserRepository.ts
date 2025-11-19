@@ -2,6 +2,7 @@ import { ICreateUserRepository } from "@/modules/users/application/protocols/ICr
 import { Repository } from "typeorm"
 import { UserModel } from "../models/UserModel"
 import { TypeOrmConnection } from "@/main/database/TypeOrmConnection"
+import { User } from "@/modules/users/domain/entities/User"
 
 export class UserRepository implements ICreateUserRepository {
   private ormRepository: Repository<UserModel>
@@ -12,14 +13,8 @@ export class UserRepository implements ICreateUserRepository {
       .getRepository(UserModel)
   }
 
-  async create(userData: {
-    name: string
-    email: string
-    password: string
-  }): Promise<boolean> {
-    const user = this.ormRepository.create(userData)
+  async create(user: User): Promise<boolean> {
     const result = await this.ormRepository.save(user)
-
     return result.id !== null
   }
 }
