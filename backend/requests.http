@@ -6,6 +6,6 @@ POST http://localhost:3000/api/auth/signup
 Content-Type: application/json
 
 {
-  "name": "newuser",
-  "password": "securepassword"
+  "nome": "newuser",
+  "senha": "securepassword",
 }
