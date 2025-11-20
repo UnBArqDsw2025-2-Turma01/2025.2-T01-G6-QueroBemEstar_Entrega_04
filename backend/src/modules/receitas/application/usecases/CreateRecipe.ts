@@ -1,4 +1,8 @@
-import { CreateRecipeInput, CreateRecipeOutput, ICreateRecipe } from "../ports/ICreateRecipe"
+import {
+  CreateRecipeInput,
+  CreateRecipeOutput,
+  ICreateRecipe,
+} from "../ports/ICreateRecipe"
 import { ICreateRecipeRepository } from "../repositories/ICreateRecipeRepository"
 import { Recipe } from "../../domain/entities/recipe"
 import { ISearchUserRepository } from "@/modules/users/application/repositories/ISearchUserRepository"
