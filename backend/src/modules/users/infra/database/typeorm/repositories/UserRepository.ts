@@ -19,6 +19,8 @@ export class UserRepository
     const result = await this.ormRepository.save({
       name: user.nome,
       password: user.senha,
+      createdAt: user.dataCadastro,
+      updatedAt: user.dataAtualizacao,
     })
     return result.id !== null
   }
