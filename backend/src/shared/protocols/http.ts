@@ -6,5 +6,6 @@ export type HttpResponse<T> = {
 export type HttpRequest<T> = {
   body: T
   headers?: Record<string, string>
+  query?: Record<string, string>
   userId?: number
 }

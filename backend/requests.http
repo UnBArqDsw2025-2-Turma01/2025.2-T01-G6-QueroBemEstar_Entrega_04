@@ -36,5 +36,5 @@ x-access-token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVz
 }
 
 ### Get all Receipe
-GET http://localhost:3000/api/receitas
+GET http://localhost:3000/api/receitas?page=1&limit=30
 Content-Type: application/json

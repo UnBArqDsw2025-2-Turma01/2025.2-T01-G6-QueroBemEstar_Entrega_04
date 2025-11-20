@@ -5,6 +5,7 @@ import { TypeOrmConnection } from "@/main/database/TypeOrmConnection"
 import { Recipe } from "@/modules/receitas/domain/entities/recipe"
 import { ISearchRecipeRepository } from "@/modules/receitas/application/repositories/ISearchRecipeRepository"
 import { User } from "@/modules/users/domain/entities/user"
+import { PaginatedResult } from "@/shared/protocols/pagination"
 
 export class ReceitaRepository
   implements ICreateRecipeRepository, ISearchRecipeRepository
@@ -102,16 +103,29 @@ export class ReceitaRepository
     return receita
   }
 
-  async findAll(): Promise<Recipe[]> {
-    const receitaModel = await this.ormRepository.find({
+  async findAll(page: number, limit: number): Promise<PaginatedResult<Recipe>> {
+    const skip = (page - 1) * limit
+
+    const [receitasModel, total] = await this.ormRepository.findAndCount({
       relations: ["autor"],
+      skip,
+      take: limit,
+      order: { dataPublicacao: "DESC" },
     })
 
-    if (!receitaModel) {
-      return []
+    if (!receitasModel) {
+      return {
+        data: [],
+        meta: {
+          page,
+          limit,
+          total: 0,
+          totalPages: 0,
+        },
+      }
     }
 
-    const receita = receitaModel.map((receitaModel) => {
+    const receitas = receitasModel.map((receitaModel) => {
       const autor = User.rebuild({
         id: receitaModel.autor.id,
         nome: receitaModel.autor.name,
@@ -133,6 +147,16 @@ export class ReceitaRepository
       })
     })
 
-    return receita
+    const totalPages = Math.ceil(total / limit)
+
+    return {
+      data: receitas,
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    }
   }
 }

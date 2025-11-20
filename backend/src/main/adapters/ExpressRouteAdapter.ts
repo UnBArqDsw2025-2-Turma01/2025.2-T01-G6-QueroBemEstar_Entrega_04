@@ -10,6 +10,7 @@ export const adaptRoute = (controller: IController<unknown, unknown>) => {
     const request = {
       body: req.body || {},
       params: req.params || {},
+      query: req.query || {},
       userId: req.userId,
     }
     const httpResponse = await controller.handle(request)
