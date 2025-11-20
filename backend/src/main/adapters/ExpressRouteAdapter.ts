@@ -1,11 +1,16 @@
 import { IController } from "@/shared/protocols/controller"
 import { Request, Response } from "express"
 
+interface AuthenticatedRequest extends Request {
+  userId?: number
+}
+
 export const adaptRoute = (controller: IController<unknown, unknown>) => {
-  return async (req: Request, res: Response) => {
+  return async (req: AuthenticatedRequest, res: Response) => {
     const request = {
       body: req.body || {},
       params: req.params || {},
+      userId: req.userId,
     }
     const httpResponse = await controller.handle(request)
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
