@@ -22,7 +22,7 @@ Content-Type: application/json
 ### Create Receipe
 POST http://localhost:3000/api/receitas
 Content-Type: application/json
-x-access-token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJOYW1lIjoiam9hbyIsImlhdCI6MTc2MzY2Njc0NywiZXhwIjoxNzYzNjY2ODA3fQ.Sx9t1yjSvzxyn5Q7AtYUOuP7YdiMHhHXSD5HkdsJONs
+x-access-token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJOYW1lIjoiam9hbyIsImlhdCI6MTc2MzY2ODU5NiwiZXhwIjoxNzYzNjk3Mzk2fQ.cdDd1s3ccecYPC1oyPYtD2wsfswySPY875Vszbu86ks
 
 {
   "titulo": "Receita de Teste",

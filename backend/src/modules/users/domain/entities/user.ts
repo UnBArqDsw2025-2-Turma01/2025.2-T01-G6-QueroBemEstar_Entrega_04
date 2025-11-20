@@ -27,33 +27,43 @@ export class User {
     const senhaLimpa = props.senha.trim()
 
     if (nomeLimpo === "") {
-      throw new InvalidParamError("O nome do usuário não pode ser vazio.")
+      throw new InvalidParamError(
+        "nome",
+        "O nome do usuário não pode ser vazio.",
+      )
     }
 
     if (nomeLimpo.length < 3) {
       throw new InvalidParamError(
+        "nome",
         "O nome do usuário deve ter no mínimo 3 caracteres.",
       )
     }
 
     if (nomeLimpo.length > 128) {
       throw new InvalidParamError(
+        "nome",
         "O nome do usuário deve ter no máximo 128 caracteres.",
       )
     }
 
     if (senhaLimpa === "") {
-      throw new InvalidParamError("A senha do usuário não pode ser vazia.")
+      throw new InvalidParamError(
+        "senha",
+        "A senha do usuário não pode ser vazia.",
+      )
     }
 
     if (senhaLimpa.length < 6) {
       throw new InvalidParamError(
+        "senha",
         "A senha do usuário deve ter no mínimo 6 caracteres.",
       )
     }
 
     if (senhaLimpa.length > 128) {
       throw new InvalidParamError(
+        "senha",
         "A senha do usuário deve ter no máximo 128 caracteres.",
       )
     }
