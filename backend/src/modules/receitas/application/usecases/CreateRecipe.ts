@@ -6,6 +6,7 @@ import {
 import { ICreateRecipeRepository } from "../repositories/ICreateRecipeRepository"
 import { Recipe } from "../../domain/entities/recipe"
 import { ISearchUserRepository } from "@/modules/users/application/repositories/ISearchUserRepository"
+import { AccessDeniedError } from "@/shared/errors/AccessDenied"
 
 export class CreateRecipe implements ICreateRecipe {
   constructor(
@@ -19,7 +20,7 @@ export class CreateRecipe implements ICreateRecipe {
   ): Promise<CreateRecipeOutput> {
     const autor = await this.searchUserById.findById(userId)
     if (!autor) {
-      throw new Error("Usuário não encontrado.")
+      throw new AccessDeniedError()
     }
 
     const novaReceita = Recipe.create({
@@ -30,8 +31,6 @@ export class CreateRecipe implements ICreateRecipe {
       fotoUrl: input.fotoUrl,
       autor: autor,
     })
-
-    console.log("CreateRecipe:", novaReceita)
 
     const receitaSalva = await this.createRecipeRepository.create(novaReceita)
     return receitaSalva

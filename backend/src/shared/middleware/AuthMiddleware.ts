@@ -1,9 +1,15 @@
 import { ISearchUserRepository } from "@/modules/users/application/repositories/ISearchUserRepository"
 import { HttpResponse } from "../protocols/http"
-import { forbidden, ok, serverError } from "../helpers/HttpHelpers"
+import {
+  forbidden,
+  ok,
+  serverError,
+  unauthorized,
+} from "../helpers/HttpHelpers"
 import { AccessDeniedError } from "../errors/AccessDenied"
 import { ITokenGenerator } from "@/modules/auth/application/protocols/ITokenGenerator"
 import { Middleware } from "../protocols/Middleware"
+import { JsonWebTokenError } from "jsonwebtoken"
 
 export interface AuthRequest {
   accessToken?: string
@@ -33,7 +39,7 @@ export class AuthMiddleware
       const decoded = this.tokenVerifier.verify(token)
 
       if (!decoded) {
-        return forbidden(new AccessDeniedError())
+        return unauthorized()
       }
 
       const account = await this.searchUserByName.findByName(decoded.userName)
@@ -44,6 +50,9 @@ export class AuthMiddleware
 
       return forbidden(new AccessDeniedError())
     } catch (error) {
+      if (error instanceof JsonWebTokenError) {
+        return unauthorized()
+      }
       return serverError(error as Error)
     }
   }

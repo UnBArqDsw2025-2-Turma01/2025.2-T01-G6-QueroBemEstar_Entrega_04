@@ -16,8 +16,12 @@ export const adaptRoute = (controller: IController<unknown, unknown>) => {
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
       res.status(httpResponse.statusCode).json(httpResponse.body)
     } else {
+      const error = httpResponse.body as Error
       res.status(httpResponse.statusCode).json({
-        error: (httpResponse.body as Error).message,
+        error: {
+          name: error.name,
+          message: error.message,
+        },
       })
     }
   }

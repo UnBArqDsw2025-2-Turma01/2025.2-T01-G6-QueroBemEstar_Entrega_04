@@ -12,8 +12,12 @@ export const adaptMiddleware = (middleware: Middleware<unknown, unknown>) => {
       Object.assign(req, httpResponse.body)
       next()
     } else {
+      const error = httpResponse.body as Error
       res.status(httpResponse.statusCode).json({
-        error: httpResponse.body,
+        error: {
+          name: error.name,
+          message: error.message,
+        },
       })
     }
   }
