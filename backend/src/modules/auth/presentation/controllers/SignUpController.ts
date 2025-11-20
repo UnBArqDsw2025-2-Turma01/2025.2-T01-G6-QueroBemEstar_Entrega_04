@@ -6,18 +6,18 @@ import { IController } from "@/shared/protocols/controller"
 
 export interface SignUpRequest {
   body: {
-    name: string
-    password: string
+    nome: string
+    senha: string
   }
   params: Record<string, unknown>
 }
 
 export class SignUpController implements IController<SignUpRequest, null> {
-  constructor(private createUser: ICreateUser) {}
+  constructor(private createUser: ICreateUser) { }
 
   async handle(request: SignUpRequest): Promise<HttpResponse<null | Error>> {
-    const { name, password } = request.body
-    const isValid = await this.createUser.execute({ name, password })
+    const { nome, senha } = request.body
+    const isValid = await this.createUser.execute({ nome, senha })
     if (!isValid) {
       return forbidden(new NameAlreadyInUse())
     }

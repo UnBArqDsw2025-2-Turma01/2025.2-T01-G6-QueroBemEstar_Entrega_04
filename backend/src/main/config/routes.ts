@@ -1,5 +1,5 @@
 import { Express, Router } from "express"
-import setupAuthRoutes from "../routes/AuthRoutes"
+import setupAuthRoutes from "@/modules/auth/presentation/routes/AuthRoutes"
 
 export default (app: Express): void => {
   const router = Router()
