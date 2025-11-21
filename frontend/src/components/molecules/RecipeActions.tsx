@@ -99,7 +99,7 @@ export const RecipeActions = ({
         />
         <span className="text-xs font-medium text-muted-foreground">{loadingLikes ? '...' : likeCount}</span>
       </div>
-
+      {/* 
       <div className="flex flex-col items-center gap-1">
         <IconButtonRound
           icon={MessageCircle}
@@ -118,7 +118,7 @@ export const RecipeActions = ({
           aria-label="Salvar receita"
         />
         <span className="text-xs font-medium text-muted-foreground">{saves}</span>
-      </div>
+      </div> */}
     </div>
   );
 };
