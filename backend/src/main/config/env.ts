@@ -5,5 +5,6 @@ export default {
   db_port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
   db_user: process.env.DB_USER || "user",
   db_password: process.env.DB_PASSWORD || "password",
-  db_name: process.env.DB_NAME || "database",
+  db_name: process.env.DB_NAME || "quero_bem_estar",
+  jwt_secret: process.env.JWT_SECRET || "your_jwt_secret_key",
 }

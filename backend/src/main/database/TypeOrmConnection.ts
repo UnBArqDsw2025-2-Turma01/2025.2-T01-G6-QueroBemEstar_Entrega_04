@@ -54,7 +54,9 @@ export class TypeOrmConnection {
       database: this.database,
       synchronize: process.env.NODE_ENV === "development",
       logging: process.env.NODE_ENV === "development",
-      entities: [`${__dirname}/../../modules/*/infra/database/typeorm/models/*.{ts,js}`],
+      entities: [
+        `${__dirname}/../../modules/*/infra/database/typeorm/models/*.{ts,js}`,
+      ],
       migrations: [`${__dirname}/migrations/*.{ts,js}`],
     })
 

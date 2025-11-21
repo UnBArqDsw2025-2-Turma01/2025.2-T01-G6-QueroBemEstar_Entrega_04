@@ -1,18 +1,19 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
+@Entity("users")
 export class UserModel {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column({ unique: true })
   name: string
 
   @Column()
   password: string
 
-  @Column()
-  created_at: Date
+  @Column({ name: "created_at" })
+  createdAt: Date
 
-  @Column()
-  updated_at: Date
+  @Column({ name: "updated_at" })
+  updatedAt: Date
 }

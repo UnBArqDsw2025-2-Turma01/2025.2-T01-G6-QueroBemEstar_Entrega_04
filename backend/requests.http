@@ -1,0 +1,48 @@
+### Healthy
+GET http://localhost:3000/api/health
+
+### SignUp
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "senha": "123456"
+}
+
+### Login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "senha": "123456"
+}
+
+### Create Receipe
+POST http://localhost:3000/api/receitas
+Content-Type: application/json
+x-access-token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJOYW1lIjoiam9hbyIsImlhdCI6MTc2MzY2ODU5NiwiZXhwIjoxNzYzNjk3Mzk2fQ.cdDd1s3ccecYPC1oyPYtD2wsfswySPY875Vszbu86ks
+
+{
+  "titulo": "Receita de Teste",
+  "descricao": "Descrição da receita de teste",
+  "ingredientes": [
+    "Ingrediente 1",
+    "Ingrediente 2"
+  ],
+  "modoPreparo": "Modo de preparo da receita de teste.",
+  "fotoUrl": "http://exemplo.com/foto.jpg"
+}
+
+### Get all Receipe
+GET http://localhost:3000/api/receitas?page=1&limit=30
+Content-Type: application/json
+
+### Like a Receipe
+POST http://localhost:3000/api/curtidas/39
+Content-Type: application/json
+x-access-token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJOYW1lIjoiam9hbyIsImlhdCI6MTc2MzY2ODU5NiwiZXhwIjoxNzYzNjk3Mzk2fQ.cdDd1s3ccecYPC1oyPYtD2wsfswySPY875Vszbu86ks
+
+### Get Likes of a Receipe
+
