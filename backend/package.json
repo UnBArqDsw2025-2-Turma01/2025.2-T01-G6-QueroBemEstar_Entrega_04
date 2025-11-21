@@ -28,9 +28,7 @@
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
-    "tsc-alias": "^1.8.16",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1"
   },
   "dependencies": {
@@ -38,6 +36,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
-    "typeorm": "^0.3.27"
+    "tsc-alias": "^1.8.16",
+    "typeorm": "^0.3.27",
+    "typescript": "^5.9.3"
   }
 }
