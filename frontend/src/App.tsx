@@ -8,6 +8,8 @@ import Recipes from "./pages/Recipes";
 import Competicoes from "./pages/Competicoes";
 import Configuracoes from "./pages/Configuracoes";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/receitas" element={<Recipes />} />
           <Route path="/competicoes" element={<Competicoes />} />
           <Route path="/configuracoes" element={<Configuracoes />} />

@@ -2,8 +2,10 @@ import { Bell, Apple } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { InfoChipsGroup } from "@/components/molecules/InfoChipsGroup";
+import { Link } from 'react-router-dom';
 
 export const Topbar = () => {
+  const isDev = import.meta.env.MODE !== 'production';
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b bg-card shadow-sm">
       <div className="flex h-full items-center justify-between px-6">
@@ -26,6 +28,12 @@ export const Topbar = () => {
             <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" alt="Usuário" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
+          {isDev ? (
+            <div className="hidden md:flex items-center gap-2">
+              <Link to="/login" className="text-sm px-3 py-1 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100">Entrar</Link>
+              <Link to="/register" className="text-sm px-3 py-1 rounded-md bg-white text-emerald-600 border border-emerald-200 hover:bg-emerald-50">Registrar</Link>
+            </div>
+          ) : null}
         </div>
       </div>
     </header>
