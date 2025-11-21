@@ -23,4 +23,18 @@ export class Curtida {
       dataCurtida: new Date(),
     })
   }
+
+  public static reBuild(props: {
+    id: number
+    autorId: number
+    receitaId: number
+    dataCurtida: Date
+  }): Curtida {
+    return new Curtida({
+      id: props.id,
+      autorId: props.autorId,
+      receitaId: props.receitaId,
+      dataCurtida: props.dataCurtida,
+    })
+  }
 }

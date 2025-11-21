@@ -11,6 +11,7 @@ export const makeCurtirReceitaController = () => {
 
   const curtirReceitaUseCase = new CurtirReceita(
     curtidaRepository,
+    curtidaRepository,
     userRepository,
     receitaRepository,
   )

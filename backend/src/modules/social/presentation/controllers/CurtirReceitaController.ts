@@ -7,6 +7,7 @@ import {
   serverError,
 } from "@/shared/helpers/HttpHelpers"
 import { InvalidParamError } from "@/shared/errors/InvalidParamError"
+import { ReceitaJaCurtidaError } from "@/shared/errors/ReceitaJaCurtidaError"
 
 export interface CurtirReceitaRequest {
   receitaId: number
@@ -47,6 +48,9 @@ export class CurtirReceitaController
 
       return badRequest(new Error("Não foi possível curtir a receita."))
     } catch (error) {
+      if (error instanceof ReceitaJaCurtidaError) {
+        return badRequest(error)
+      }
       if (error instanceof InvalidParamError) {
         return badRequest(error)
       }
