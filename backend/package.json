@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/main/index.js",
     "start:dev": "nodemon --watch src --exec \"ts-node -r tsconfig-paths/register src/main/index.ts\" -e ts",
     "prettier": "prettier --write \"src/**/*.ts\"",
     "up": "docker-compose up -d",
