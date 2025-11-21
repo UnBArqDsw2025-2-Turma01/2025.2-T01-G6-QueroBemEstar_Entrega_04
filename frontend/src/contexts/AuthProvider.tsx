@@ -28,9 +28,9 @@ function parseJwt(token: string): DecodedToken | null {
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
+  const [userId, setUserId] = useState<number | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
-  // Load auth state from localStorage on mount
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     if (storedToken) {
@@ -38,6 +38,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (decoded) {
         setToken(storedToken);
         setUserName(decoded.userName);
+        setUserId(decoded.userId);
         setIsAuthenticated(true);
       } else {
         localStorage.removeItem('authToken');
@@ -46,9 +47,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = (newToken: string, name: string) => {
+    const decoded = parseJwt(newToken);
     localStorage.setItem('authToken', newToken);
     setToken(newToken);
     setUserName(name);
+    setUserId(decoded?.userId || null);
     setIsAuthenticated(true);
   };
 
@@ -56,10 +59,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     localStorage.removeItem('authToken');
     setToken(null);
     setUserName(null);
+    setUserId(null);
     setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userName, token, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuthenticated, userName, userId, token, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

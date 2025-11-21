@@ -24,6 +24,13 @@ interface RecipeResponse {
   };
 }
 
+interface Like {
+  id: number;
+  autorId: number;
+  receitaId: number;
+  dataCurtida: string;
+}
+
 interface SignupPayload {
   nome: string;
   senha: string;
@@ -111,7 +118,6 @@ export const authService = {
         };
       }
 
-      // Store token in localStorage
       if (data.token) {
         localStorage.setItem('authToken', data.token);
       }
@@ -148,6 +154,58 @@ export const recipeService = {
     } catch (error) {
       console.error('Erro ao buscar receitas:', error);
       throw error;
+    }
+  },
+
+  async likeRecipe(recipeId: number, token: string): Promise<{ success: boolean; error?: string }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/curtidas/${recipeId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 204) {
+        return { success: true };
+      }
+
+      const data = await response.json();
+      return {
+        success: false,
+        error: data.message || 'Erro ao curtir receita',
+      };
+    } catch (error) {
+      console.error('Erro ao curtir receita:', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Erro na conexão',
+      };
+    }
+  },
+
+  async getLikes(recipeId: number): Promise<{ count: number; likes?: Like[]; error?: string }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/curtidas/${recipeId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao buscar curtidas');
+      }
+
+      const data: Like[] = await response.json();
+      return { count: data.length, likes: data };
+    } catch (error) {
+      console.error('Erro ao buscar curtidas:', error);
+      return {
+        count: 0,
+        error: error instanceof Error ? error.message : 'Erro na conexão',
+      };
     }
   },
 };

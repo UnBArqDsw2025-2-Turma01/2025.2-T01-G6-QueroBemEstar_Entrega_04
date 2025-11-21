@@ -6,6 +6,7 @@ import { FeedNavButtons } from '@/components/molecules/FeedNavButtons';
 import { recipes as mockRecipes } from '@/data/recipes';
 import { AnimatePresence } from 'framer-motion';
 import { recipeService } from '@/services/api';
+import { useAuth } from '@/hooks/useAuth';
 import type { Recipe } from '@/types/recipe';
 
 const Recipes = () => {
@@ -17,6 +18,8 @@ const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
+  const { token, isAuthenticated } = useAuth();
+  const [likedRecipes, setLikedRecipes] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -92,6 +95,33 @@ const Recipes = () => {
       setLoadingMore(false);
     }
   }, [currentPage, totalPages, loadingMore]);
+
+  const handleLikeRecipe = useCallback(
+    async (recipeId: number) => {
+      if (!isAuthenticated || !token) {
+        alert('Você precisa estar logado para curtir uma receita');
+        return;
+      }
+
+      if (likedRecipes.has(recipeId)) {
+        alert('Você já curtiu esta receita');
+        return;
+      }
+
+      try {
+        const result = await recipeService.likeRecipe(recipeId, token);
+        if (result.success) {
+          setLikedRecipes((prev) => new Set([...prev, recipeId]));
+        } else {
+          alert(result.error || 'Erro ao curtir receita');
+        }
+      } catch (err) {
+        console.error('Erro ao curtir receita:', err);
+        alert('Erro ao curtir receita');
+      }
+    },
+    [isAuthenticated, token, likedRecipes]
+  );
 
   const goToPrevious = useCallback(() => {
     if (hasPrevious) {
@@ -170,9 +200,11 @@ const Recipes = () => {
             {/* Left Actions */}
             <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
               <RecipeActions
+                recipeId={currentRecipe?.id || 0}
                 likes={currentRecipe?.likes || 0}
                 comments={currentRecipe?.comments || 0}
                 saves={currentRecipe?.saves || 0}
+                onLike={() => handleLikeRecipe(currentRecipe?.id || 0)}
               />
             </div>
 
@@ -192,9 +224,11 @@ const Recipes = () => {
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-10 lg:hidden">
               <div className="flex items-center gap-4 bg-card rounded-full shadow-lg p-2">
                 <RecipeActions
+                  recipeId={currentRecipe?.id || 0}
                   likes={currentRecipe?.likes || 0}
                   comments={currentRecipe?.comments || 0}
                   saves={currentRecipe?.saves || 0}
+                  onLike={() => handleLikeRecipe(currentRecipe?.id || 0)}
                 />
               </div>
             </div>

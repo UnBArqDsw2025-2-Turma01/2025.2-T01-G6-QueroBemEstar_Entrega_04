@@ -39,7 +39,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [userName, setUserName] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
-  // Load auth state from localStorage on mount
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     if (storedToken) {

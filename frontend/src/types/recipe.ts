@@ -14,7 +14,6 @@ export interface Recipe {
   dataPublicacao: string;
   dataAtualizacao: string;
   autor: Autor;
-  // Legacy fields for compatibility
   authorName?: string;
   authorAvatarUrl?: string;
   mealType?: MealType;
