@@ -7,6 +7,7 @@ import { recipes as mockRecipes } from '@/data/recipes';
 import { AnimatePresence } from 'framer-motion';
 import { recipeService } from '@/services/api';
 import { useAuth } from '@/hooks/useAuth';
+import { formatRelativeTime } from '@/lib/utils';
 import type { Recipe } from '@/types/recipe';
 
 const Recipes = () => {
@@ -32,7 +33,7 @@ const Recipes = () => {
           authorName: recipe.autor.nome,
           authorAvatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${recipe.autor.nome}`,
           mealType: 'Almoço' as const,
-          createdAtRelative: `${index + 1}h atrás`,
+          createdAtRelative: formatRelativeTime(recipe.dataPublicacao),
           imageUrl: recipe.fotoUrl,
           title: recipe.titulo,
           description: recipe.descricao,
@@ -77,7 +78,7 @@ const Recipes = () => {
         authorName: recipe.autor.nome,
         authorAvatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${recipe.autor.nome}`,
         mealType: 'Almoço' as const,
-        createdAtRelative: `${index + 1}h atrás`,
+        createdAtRelative: formatRelativeTime(recipe.dataPublicacao),
         imageUrl: recipe.fotoUrl,
         title: recipe.titulo,
         description: recipe.descricao,
