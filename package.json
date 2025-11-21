@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cd backend && node dist/main/index.js",
     "build": "cd backend && npm install && npm run build",
-    "heroku-postbuild": "cd backend && npm install && npm run build && npm prune --production"
+    "heroku-postbuild": "cd backend && npm run build && npm prune --production"
   },
   "engines": {
     "node": "18.x"
