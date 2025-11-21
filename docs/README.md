@@ -23,6 +23,10 @@ Repositório e documentação da entrega 4
 
 Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados na execução.
 
+# Deploy da aplicação
+
+A aplicação está hospedada no Vercel e pode ser acessada pelo link: [QueroBemEstar](https://2025-2-t01-g6-quero-bem-estar-entre.vercel.app/)
+
 # Frontend QueroBemEstar
 
 [Acesse aqui](https://github.com/UnBArqDsw2025-2-Turma01/2025.2-T01-G6-QueroBemEstar_Entrega_04/tree/main/frontend)

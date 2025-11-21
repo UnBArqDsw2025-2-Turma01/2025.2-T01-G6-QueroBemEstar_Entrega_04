@@ -2,10 +2,13 @@
 
 ![Logo](./docs/assets/logo.png)
 
-
 # RepositorioTemplate
 
 Repositório que deve ser utilizado como template inicial pelos grupos da matéria de Arquitetura e Desenho de Software.
+
+## Link do deploy da aplicação
+
+Acesse a aplicação pelo link: [QueroBemEstar](https://2025-2-t01-g6-quero-bem-estar-entre.vercel.app/)
 
 ## Introdução
 
