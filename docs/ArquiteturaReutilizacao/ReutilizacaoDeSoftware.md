@@ -36,3 +36,75 @@ A reutilização de software é um paradigma fundamental na engenharia de softwa
 ---
 
 - O componente NavLink (NavLink.tsx) é um exemplo de reutilização. Ele atua como um wrapper sobre o react-router-dom, centralizando comportamentos comuns de navegação e a aplicação de classes padrão. Isso reduz duplicação de código e garante consistência visual e funcional em toda a aplicação. As pastas atoms/, molecules/, organisms/ e templates/ seguem a metodologia Atomic Design, estruturando os componentes de forma hierárquica
+
+### Hooks reutilizáveis 
+
+---
+
+<div align="center">
+
+![pastas](../assets/carbon2.png)
+
+</div>
+
+---
+- Os Hooks são funções personalizadas localizadas em frontend/src/hooks/* que encapsulam lógica de interface reutilizável em várias telas.Por exemplo,use-mobile.tsx contém a lógica para detectar se o dispositivo é móvel, permitindo que diferentes componentes acessem essa informação de forma consistente.
+
+### Utilitários 
+
+---
+
+<div align="center">
+
+![pastas](../assets/utils.png)
+
+</div>
+
+---
+- Utilitário de estilo compartilhado por componentes.
+
+#### 2 - backend 
+
+### Helpers HTTP 
+---
+
+<div align="center">
+
+![pastas](../assets/http.png)
+
+</div>
+
+---
+- Padronizam as respostas HTTP reutilizáveis entre controllers.
+
+### Middlewares reutilizaveis 
+
+---
+
+<div align="center">
+
+![pastas](../assets/Adaptar.png)
+
+</div>
+
+---
+- Encapsula verificação de token e busca de usuário — pode ser reutilizado por várias rotas.
+
+### Validações reutilizáveis 
+---
+
+<div align="center">
+
+![pastas](../assets/Validacao.png)
+
+</div>
+
+---
+-  Permite compor validações em qualquer controller/service.
+
+
+
+## Histórico de Versão
+| Data       | Versão | Descrição                                                                                        | Autor                                                                                                                                                                                                                 | Revisores                                                                                                                                                              |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 20/11/2025 | `1.0`  | Criação do documento | [Jose Vinicius](https://github.com/JoseViniciusQueiroz)                                                                                                                                                                          |                                                                                                                                                                                                                                                                              
