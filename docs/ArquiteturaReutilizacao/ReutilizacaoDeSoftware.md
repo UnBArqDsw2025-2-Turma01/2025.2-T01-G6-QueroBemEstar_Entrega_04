@@ -2,7 +2,110 @@
 
 ## Introdução 
 
-A reutilização de software é um paradigma fundamental na engenharia de software moderna, visando otimizar o processo de desenvolvimento e aprimorar a qualidade dos produtos. Este documento tem como objetivo mostrar o que foi feito dessa pratica em nosso projeto.
+Este projeto aplica reutilização de software de forma sistemática, adotando princípios de Atomic Design, componentização, padronização de UI e organização modular. A seguir está um detalhamento de como cada camada da arquitetura contribui para a reutilização e redução de duplicação de código.
+
+## Atomic Design 
+A estrutura do projeto segue o padrão Atomic Design, dividido em:
+
+**Átomos** (```components/atoms/```): unidades básicas e reutilizáveis da interface
+
+Exemplos: 
+- ```IconButtonRound```
+- ```ChipInfo```
+- ```MealBadge```
+
+**Moléculas** (```components/molecules/```): composição de átomos para funções específicas
+
+Exemplos: 
+- ```RecipeActions (like, comentar, salvar)```
+- ```SidebarItem```
+- ```FeedNavButtons```
+
+**Organismos** (```components/organisms/```): blocos maiores e independentes reutilizados em páginas
+
+Exemplos: 
+- ```Topbar```
+- ```Sidebar```
+- ```RecipeCard```
+- ```HeroBanner```
+
+**Templates** (```components/templates/```): estruturas que combinam organismos
+
+Exemplo: 
+- MainLayout → Sidebar + Topbar + Conteúdo
+
+**Páginas** (```components/pages/```): apenas composição final dos templates e organismos
+
+Esse padrão reduz código duplicado, facilita manutenção e garante consistência visual.
+
+![atomic](../assets/atomic.jpg)
+
+## Biblioteca de UI para reutilização (```components/ui/```)
+A pasta ```components/ui/``` funciona como uma biblioteca de interface totalmente reutilizável, operando como um design system interno do projeto. Ela centraliza todos os componentes de UI de baixo nível, garantindo padronização, consistência visual e evolução escalável da aplicação.
+
+A biblioteca foi criada para:
+- Evitar repetição de estilos e layouts
+- Criar uma base consistente para todos os componentes de interface
+- Facilitar manutenção e evolução do design
+- Unificar experiências de interação (hover, foco, animação)
+- Criar padrões formais dentro da aplicação
+
+Em vez de criar novos botões, novos cards, novos inputs, tudo é centralizado nos componentes da pasta ui/, que podem ser importados e reutilizados em qualquer página ou layout.
+
+### React + forwardRef: Base para Reutilização Composicional
+Todos os componentes usam:
+```
+import * as React from "react";
+```
+E usam forwardRef para:
+- permitir composição profunda de componentes
+- suportar refs sem quebrar acessibilidade
+- reaproveitar elementos em combinações diversas
+- permitir integração com Radix, Vaul e libs externas
+
+Isso cria uma base sólida para componentes reutilizáveis e flexíveis.
+
+### Tailwind + cn() - Reutilização de Estilo
+A maioria dos arquivos importa:
+```
+import { cn } from "@/lib/utils";
+```
+Essa função padroniza:
+- merge de classes Tailwind
+- aplicação de estilos condicionais
+- customização consistente via className
+
+Isso garante que todos os componentes sigam o mesmo padrão visual, sem duplicar lógica de estilização.
+
+### Class-Variance-Authority (CVA)
+Vários componentes utilizam:
+```
+import { cva, type VariantProps } from "class-variance-authority";
+```
+
+Com CVA, os componentes podem ter variações configuráveis de:
+- estilo
+- tamanho
+- comportamento
+
+Exemplos diretos:
+- buttonVariants
+- badgeVariants
+- labelVariants
+- variantes do sidebar
+- variantes de toggle
+
+Isso permite criar muitas versões diferentes de um mesmo componente sem duplicar código.
+
+### Lucide Icons - Ícones Reutilizáveis e Consistentes
+Ícones importados incluem:
+```ChevronDown```, ```ChevronRight```, ```ArrowLeft```, ```ArrowRight```, ```Check```, ```Circle```, ```MoreHorizontal```, ```X```, ```Dot```, ```PanelLeft```, ```GripVertical```...
+
+Benefícios:
+- ícones com estilo uniforme
+- tamanhos consistentes
+- padronização visual
+- componentes de ícone reutilizáveis em buttons, menus e cards
 
 ## Importância
 
@@ -102,9 +205,12 @@ A reutilização de software é um paradigma fundamental na engenharia de softwa
 ---
 -  Permite compor validações em qualquer controller/service.
 
-
+## Referências Bibliográficas
+> FROST, Brad. Extending Atomic Design. Disponível em: <https://bradfrost.com/blog/post/extending-atomic-design/>
+. Acesso em: 20/11/2025.
 
 ## Histórico de Versão
 | Data       | Versão | Descrição                                                                                        | Autor                                                                                                                                                                                                                 | Revisores                                                                                                                                                              |
 | ---------- | ------ | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 20/11/2025 | `1.0`  | Criação do documento | [Jose Vinicius](https://github.com/JoseViniciusQueiroz)                                                                                                                                                                          |                                                                                                                                                                                                                                                                              
+| 20/11/2025 | `1.0`  | Criação do documento | [Jose Vinicius](https://github.com/JoseViniciusQueiroz)                                                                                                                                                                          |  [Leonardo Sauma](https://github.com/leohssjr)         
+| 21/11/2025 | `1.1`  | Adição da explicação sobre o Atomic Design | [Leonardo Sauma](https://github.com/leohssjr)                                                                                                                                                                          |                                                                                                                                                                                                                                                                     

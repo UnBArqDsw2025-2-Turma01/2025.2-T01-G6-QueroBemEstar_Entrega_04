@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-- Home
+- [Home](./)
 - Projetos
   - [4. Desenho de Software (Arquitetura & Reutilização de Software)](/ArquiteturaReutilizacao/ArquiteturaReutilizacao.md)
     - [4.1. DAS](/ArquiteturaReutilizacao/DAS.md)

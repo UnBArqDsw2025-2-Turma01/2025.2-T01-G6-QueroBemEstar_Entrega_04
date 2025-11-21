@@ -10,6 +10,8 @@
 | 222024579  |  Filipe Bressanelli |
 | 222006884  |  Jose Vinicius |
 | 231034082  |  Artur Krauspenhar |
+| 231026625  |  Gabriel Soares |
+| 231035428  |  Leonardo Sauma |
 
 ## Sobre
 

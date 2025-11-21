@@ -15,5 +15,6 @@
 | Filipe Bressanelli | Participação na concatenação de informações da etapa   | Boa      |  [Comprobatórios](ReutilizacaoDeSoftware.md)                     |
 | José Vinicius | Participação na concatenação de informações da etapa   | Boa      |  [Comprobatórios](ReutilizacaoDeSoftware.md)                     |
 | Artur Krauspenhar | Confecção do MVP   |  Excelente      |  [Comprobatórios](https://github.com/UnBArqDsw2025-2-Turma01/2025.2-T01-G6-QueroBemEstar_Entrega_04/tree/main/backend)                     |
-| Gabriel | Confecção do MVP   |  Moderada      |  [Comprobatórios](https://github.com/UnBArqDsw2025-2-Turma01/2025.2-T01-G6-QueroBemEstar_Entrega_04/tree/main/backend)                     |
+| Gabriel Soares | Confecção do MVP   |  Moderada      |  [Comprobatórios](https://github.com/UnBArqDsw2025-2-Turma01/2025.2-T01-G6-QueroBemEstar_Entrega_04/tree/main/backend)                     |
+| Leonardo Sauma | Desenvolvimento do código e auxílio na elaboração da documentação   |  Excelente      |  [Comprobatórios](../ArquiteturaReutilizacao/ReutilizacaoDeSoftware.md)|
 
