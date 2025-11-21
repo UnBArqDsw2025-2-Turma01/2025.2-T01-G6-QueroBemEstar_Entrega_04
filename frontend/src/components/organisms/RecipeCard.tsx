@@ -1,20 +1,20 @@
-import { Clock } from "lucide-react";
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { MealBadge } from "@/components/atoms/MealBadge";
-import { Recipe } from "@/types/recipe";
-import { motion } from "framer-motion";
+import { Clock } from 'lucide-react';
+import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { MealBadge } from '@/components/atoms/MealBadge';
+import { Recipe } from '@/types/recipe';
+import { motion } from 'framer-motion';
 
 interface RecipeCardProps {
   recipe: Recipe;
-  direction?: "up" | "down";
+  direction?: 'up' | 'down';
 }
 
-export const RecipeCard = ({ recipe, direction = "down" }: RecipeCardProps) => {
+export const RecipeCard = ({ recipe, direction = 'down' }: RecipeCardProps) => {
   const variants = {
     initial: (direction: string) => ({
-      y: direction === "down" ? 100 : -100,
+      y: direction === 'down' ? 100 : -100,
       opacity: 0,
     }),
     animate: {
@@ -22,7 +22,7 @@ export const RecipeCard = ({ recipe, direction = "down" }: RecipeCardProps) => {
       opacity: 1,
     },
     exit: (direction: string) => ({
-      y: direction === "down" ? -100 : 100,
+      y: direction === 'down' ? -100 : 100,
       opacity: 0,
     }),
   };
@@ -34,7 +34,7 @@ export const RecipeCard = ({ recipe, direction = "down" }: RecipeCardProps) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       className="w-full max-w-lg"
     >
       <Card className="rounded-3xl shadow-2xl overflow-hidden">
@@ -49,23 +49,16 @@ export const RecipeCard = ({ recipe, direction = "down" }: RecipeCardProps) => {
                 <p className="font-semibold text-foreground">{recipe.authorName}</p>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <Clock className="h-3 w-3" />
-                  <span>
-                    {recipe.mealType} · {recipe.createdAtRelative}
-                  </span>
+                  <span>{recipe.createdAtRelative}</span>
                 </div>
               </div>
             </div>
-            <MealBadge mealType={recipe.mealType} />
           </div>
         </CardHeader>
 
         <CardContent className="p-0">
           <div className="relative aspect-square overflow-hidden">
-            <img
-              src={recipe.imageUrl}
-              alt={recipe.title}
-              className="h-full w-full object-cover"
-            />
+            <img src={recipe.imageUrl} alt={recipe.title} className="h-full w-full object-cover" />
           </div>
         </CardContent>
 
@@ -74,9 +67,7 @@ export const RecipeCard = ({ recipe, direction = "down" }: RecipeCardProps) => {
             <h3 className="text-2xl font-bold text-foreground">{recipe.title}</h3>
             <p className="text-muted-foreground leading-relaxed">{recipe.description}</p>
           </div>
-          <Button className="w-full bg-primary hover:bg-primary/90 text-lg py-6">
-            Ver Receita Completa
-          </Button>
+          <Button className="w-full bg-primary hover:bg-primary/90 text-lg py-6">Ver Receita Completa</Button>
         </CardFooter>
       </Card>
     </motion.div>
